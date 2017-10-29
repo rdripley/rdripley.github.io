@@ -1,0 +1,14 @@
+body {
+    background: url('images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#resetButton {
+    background-color: rgb(93, 241, 93);
+    color: white;
+    width: 100px;
+    height: 100px;
+}
+img {
+    padding: 10px;
+}
