@@ -3,7 +3,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
-#resetButton {
+#fullScreen {
     background-color: rgb(93, 241, 93);
     color: white;
     width: 100px;

@@ -1,8 +1,17 @@
 $(function() {
-    // reset Button
-    $('#resetButton').on('click',function() {
-        location.reload();
+    // fullScreen Button
+    $('#fullScreen').on('click',function() {
+        var
+        el = document.documentElement
+      , rfs =
+             el.requestFullScreen
+          || el.webkitRequestFullScreen
+          || el.mozRequestFullScreen
+  ;
+  rfs.call(el);
     })
+
+    
 
     // arrays
     var alphabetArray = ["images/A.png", "images/B.png", "images/C.png", "images/D.png", "images/E.png",
@@ -21,6 +30,8 @@ $(function() {
 
     // count keyclicks
     var keyCount = 0;
+    var fullScreen = false;
+    var lastKey = 0;
 
     // function that prints alphabet to screen
     function printAlphabet() {
@@ -52,10 +63,9 @@ $(function() {
         }
     }
     // function that activates sounds on F1-12
-    function animalSounds() {
+    function animalSounds(e) {
         for (i = 0; i < 12; i++) {
-            if (lastKey== 112 + i) {
-                lastKey = 0;
+            if (lastKey == 112 + i) {
                 var audio = $('<audio>');
                 var sound = $('<source>');
                 audio.attr({
@@ -64,6 +74,7 @@ $(function() {
                 sound.attr("src", soundArray[i]);
                 sound.appendTo(audio);
                 audio.appendTo('#keyboardDiv');
+                lastKey = 0;
                 return false;
             }
         }
@@ -157,12 +168,13 @@ $(function() {
         e.preventDefault();
         keyCount++;
         lastKey = e.keyCode;
+
         // alphabet
         printAlphabet();
         // numbers
         printNumbers();
         // F1-F12 to ignore
-        animalSounds();
+        animalSounds(e);
 
         // Special keys to ignore
         specialKeys();
@@ -178,4 +190,7 @@ $(function() {
             return false;
         }
     })
+
+    // disable right-click of mouse
+    document.addEventListener('contextmenu', event => event.preventDefault());
 })
