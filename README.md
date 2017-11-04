@@ -1,1 +1,0 @@
-# rdripley.github.io
